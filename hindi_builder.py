@@ -2,18 +2,51 @@
 import sys  
 from Tkinter import *
 import numpy as np
+import os.path
+
 root = Tk()
+root.title("Hindi_Dictonary_Buil")
+isav=0
 reload(sys)  
 sys.setdefaultencoding('utf-8')
 sz=13
 
+
+def isa():
+  
+  global isav
+  if isav ==1:
+    EP.configure(bg = "#c42727")
+    isav=0
+    return 0
+
+  isav=1
+  EP.configure(bg = "#50c427")
+
+  
+  
+
+
+
 def add():
+    global isav
     if len(e.get())==0 or len(f.get())==0:
      err=Tk()
      Label(err, text="Error: Invalid Entry",font=(None, sz)).grid(row=0,column=0)
      Button(err, text='Ok',command=err.destroy,font=(None, sz)).grid(row=1,column=0)
+
      print "Error himanshu"
      return 0
+    if os.path.exists(e.get())==True:
+     print "Already Exists",isav
+     
+     if isav==0:
+      err=Tk()
+      Label(err, text="शब्दकोश में शब्द पहले से मौजूद है\n",font=(None, sz)).grid(row=0,column=0)
+      Button(err, text='ठीक',command=err.destroy,font=(None, sz)).grid(row=1,column=0)
+      return 0
+  
+   
     F = open(e.get(),'w') 
     F.write(f.get())
     f.delete(0,'end')
@@ -76,16 +109,20 @@ f.grid(row=1, column=1)
 status=Label(root, text="",font=(None, sz)).grid(row=0,column=2)
 
 
-kl=Tk()
+
 
 
 Button(root, text='Save', command=add)
 
-T = Text(kl, height=20, width=30,font=(None, sz))
-T.pack()
+T = Text(root, height=20, width=30,font=(None, sz))
+T.grid(row=3,column=1)
+
+
 Button(root, text='खोज',command=read,font=(None, sz)).grid(row=2,column=0)
 Button(root, text='सभी देखें',command=listall,font=(None, sz)).grid(row=2,column=1)
 Button(root, text='रक्षित करें',command=add,font=(None, sz)).grid(row=2,column=2)
+EP=Button(root, text='अतिरिक्त निजीकरण',command=isa,font=(None, sz))
+EP.grid(row=4,column=1)
 #r=Tk()
 #app = App(master = r)
 mainloop()
