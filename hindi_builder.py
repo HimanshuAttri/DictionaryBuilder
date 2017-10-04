@@ -5,11 +5,11 @@ import numpy as np
 import os.path
 
 root = Tk()
-root.tk.call('encoding', 'system', 'utf-8')
+
 root.title("Hindi_Dictonary_Builder")
 isav=0
 reload(sys)  
-sys.setdefaultencoding('utf-8')
+#sys.setdefaultencoding('utf-8')
 sz=13
 
 
@@ -29,13 +29,14 @@ def isa():
 def en(x):
   
     
-   e.bind('<Return>', read)
+   #e.bind('<Return>', read)
+   print "hi"
 
 
 
 
 
-def add(x):
+def add():
     global isav
     if len(e.get())==0 or len(f.get())==0:
      err=Tk()
@@ -71,7 +72,7 @@ def read(x):
      err=Tk()
      Label(err, text="Error: Invalid Entry",font=(None, sz)).grid(row=0,column=0)
      Button(err, text='Ok',command=err.destroy,font=(None, sz)).grid(row=1,column=0)
-     print "Error himanshu"
+     print "Error himanshu read"
      return 0
     if os.path.exists(e.get())==False:
            err=Tk()
@@ -130,7 +131,6 @@ status=Label(root, text="",font=(None, sz)).grid(row=1,column=2)
 
 
 
-Button(root, text='Save', command=add)
 
 T = Text(root, height=20, width=30,font=(None, sz))
 T.grid(row=4,column=1)
@@ -144,7 +144,7 @@ EP=Button(root, text='अतिरिक्त निजीकरण',command=is
 EP.grid(row=5,column=1)
 Label(root, text="(c) Himanshu Attri\nv 1.10",font=(None, 5)).grid(row=5,column=2)
 
-Radiobutton(root, text="One", command=en(1), value=1).grid(row=6,column=1)
+#Radiobutton(root, text="One", command=en(1), value=1).grid(row=6,column=1)
 
 
 #r=Tk()
