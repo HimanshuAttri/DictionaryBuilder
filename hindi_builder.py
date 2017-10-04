@@ -4,7 +4,9 @@ from Tkinter import *
 import numpy as np
 import os.path
 
+
 root = Tk()
+root.tk.call('encoding', 'system', 'utf-8')
 
 root.title("Hindi_Dictonary_Builder")
 isav=0
